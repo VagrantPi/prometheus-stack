@@ -1,0 +1,31 @@
+global:
+  scrape_interval:     15s # By default, scrape targets every 15 seconds.
+  evaluation_interval: 15s # By default, scrape targets every 15 seconds.
+  external_labels:
+      monitor: 'test-monitor'
+
+scrape_configs:
+  # subgame-dev
+  - job_name: 'test-node'
+    basic_auth:
+      username: test
+      password: test
+    scrape_interval: 5s
+    metrics_path: "/node/metrics"
+    static_configs:
+      - targets: ['172.31.0.149:8080']
+        labels:
+          group: 'test-dev'
+          source: 'node'
+  - job_name: 'test-docker'
+    basic_auth:
+      username: test
+      password: test
+    scrape_interval: 5s
+    metrics_path: "/cadvisor/metrics"
+    static_configs:
+      - targets: ['172.31.0.149:8080']
+        labels:
+          group: 'test-dev'
+          source: 'docker'
+
