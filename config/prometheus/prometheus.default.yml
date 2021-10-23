@@ -5,7 +5,7 @@ global:
       monitor: 'test-monitor'
 
 scrape_configs:
-  # subgame-dev
+  # test-dev
   - job_name: 'test-node'
     basic_auth:
       username: test
